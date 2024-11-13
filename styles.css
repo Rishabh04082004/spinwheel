@@ -23,7 +23,6 @@ body {
     justify-content: center;
     position: relative;
     transform: rotate(0deg);
-    transition: transform 4s ease-out;
 }
 
 .wheel-item {
@@ -34,13 +33,21 @@ body {
     left: 0;
     text-align: center;
     line-height: 3;
-    font-size: 16px;
+    font-size: 14px;
     background-color: #f39c12;
     color: white;
     transform-origin: 100% 100%;
     text-transform: capitalize;
     font-weight: bold;
 }
+
+/* Rotate each item to fit in the wheel for 6 sections */
+#wheel #item1 { transform: rotate(0deg); }
+#wheel #item2 { transform: rotate(60deg); }
+#wheel #item3 { transform: rotate(120deg); }
+#wheel #item4 { transform: rotate(180deg); }
+#wheel #item5 { transform: rotate(240deg); }
+#wheel #item6 { transform: rotate(300deg); }
 
 button {
     margin-top: 20px;
