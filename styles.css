@@ -34,14 +34,14 @@ body {
     text-align: center;
     line-height: 3;
     font-size: 14px;
-    background-color: #f39c12;
     color: white;
+    background-color: #f39c12;
     transform-origin: 100% 100%;
-    text-transform: capitalize;
     font-weight: bold;
+    padding: 10px;
 }
 
-/* Rotate each item to fit in the wheel for 6 sections */
+/* Positioning each section of the 6-part wheel */
 #wheel #item1 { transform: rotate(0deg); }
 #wheel #item2 { transform: rotate(60deg); }
 #wheel #item3 { transform: rotate(120deg); }
