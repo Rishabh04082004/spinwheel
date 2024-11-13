@@ -7,19 +7,9 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <div class="wheel-container"<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin Wheel of the Indian Constitution</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
     <div class="wheel-container">
         <div class="wheel" id="wheel">
-            <!-- Wheel items (6 sections) -->
+            <!-- 6 wheel items -->
             <div class="wheel-item" id="item1"></div>
             <div class="wheel-item" id="item2"></div>
             <div class="wheel-item" id="item3"></div>
@@ -32,7 +22,7 @@
     </div>
 
     <script>
-        // List of possible facts
+        // List of facts to display on the wheel
         const factList = [
             "Handwritten Masterpiece", 
             "Borrowed Framework", 
@@ -46,58 +36,42 @@
             "Continuous Journey"
         ];
 
-        // Generate 6 random facts for each page load
-        const randomFacts = [];
-        while (randomFacts.length < 6) {
-            const randomFact = factList[Math.floor(Math.random() * factList.length)];
-            if (!randomFacts.includes(randomFact)) {
-                randomFacts.push(randomFact);
+        // Randomly select 6 unique facts to display on the wheel
+        function getRandomFacts() {
+            const selectedFacts = [];
+            while (selectedFacts.length < 6) {
+                const randomFact = factList[Math.floor(Math.random() * factList.length)];
+                if (!selectedFacts.includes(randomFact)) {
+                    selectedFacts.push(randomFact);
+                }
             }
+            return selectedFacts;
         }
 
-        // Assign the random facts to each wheel item
+        // Assign random facts to wheel sections on page load
+        const randomFacts = getRandomFacts();
         randomFacts.forEach((fact, index) => {
             document.getElementById(`item${index + 1}`).innerText = fact;
         });
 
         function spinWheel() {
-            // Random rotation degree for 6 sections (0 to 3600) and random spin duration
-            let randomDeg = Math.floor(Math.random() * 3600) + 360;
-            const spinDuration = Math.random() * 3 + 2; // Random duration between 2-5 seconds
-
-            // Apply rotation and duration to the wheel
+            // Calculate random rotation degree for a more dynamic spin (between 5 and 10 full rotations)
+            const randomDeg = Math.floor(Math.random() * 2160) + 1800;
             const wheel = document.getElementById('wheel');
-            wheel.style.transition = `transform ${spinDuration}s ease-out`;
+            
+            // Spin the wheel with smooth transition
+            wheel.style.transition = 'transform 4s ease-out';
             wheel.style.transform = `rotate(${randomDeg}deg)`;
 
-            // Determine the selected item after spinning
+            // Determine the selected fact after spinning
             setTimeout(() => {
-                const itemIndex = Math.floor((randomDeg % 360) / 60); // 360 degrees / 6 items = 60 degrees per item
+                const finalDeg = randomDeg % 360;  // Get rotation within a single 360-degree loop
+                const itemIndex = Math.floor(finalDeg / 60); // 6 sections, each 60 degrees
                 const selectedFact = randomFacts[itemIndex];
-                document.getElementById('description').style.display = 'block';
                 document.getElementById('description').innerText = selectedFact;
-            }, spinDuration * 1000);
+                document.getElementById('description').style.display = 'block';
+            }, 4000);  // Match the transition duration
         }
     </script>
-</body>
-</html>
->
-        <div class="wheel" id="wheel">
-            <div class="wheel-item" id="item1">Handwritten Masterpiece</div>
-            <div class="wheel-item" id="item2">Borrowed Framework</div>
-            <div class="wheel-item" id="item3">Longest Written Constitution</div>
-            <div class="wheel-item" id="item4">Unity in Diversity</div>
-            <div class="wheel-item" id="item5">Living Document</div>
-            <div class="wheel-item" id="item6">Democratic Ideal</div>
-            <div class="wheel-item" id="item7">Balance of Power</div>
-            <div class="wheel-item" id="item8">Social Contract</div>
-            <div class="wheel-item" id="item9">Source of Inspiration</div>
-            <div class="wheel-item" id="item10">Continuous Journey</div>
-        </div>
-        <button onclick="spinWheel()">Spin the Wheel</button>
-        <div id="description" class="description"></div>
-    </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
