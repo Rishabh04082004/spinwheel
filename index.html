@@ -1,156 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spin Wheel of the Indian Constitution</title>
-    <style>
-        /* Embedded CSS */
-
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-
-        .wheel-container {
-            text-align: center;
-            position: relative;
-        }
-
-        .wheel {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            border: 10px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            transform: rotate(0deg);
-        }
-
-        .wheel-item {
-            width: 100%;
-            height: 50%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            text-align: center;
-            line-height: 3;
-            font-size: 14px;
-            color: white;
-            background-color: #f39c12;
-            transform-origin: 100% 100%;
-            font-weight: bold;
-            padding: 10px;
-        }
-
-        /* Positioning each section of the 6-part wheel */
-        #wheel #item1 { transform: rotate(0deg); }
-        #wheel #item2 { transform: rotate(60deg); }
-        #wheel #item3 { transform: rotate(120deg); }
-        #wheel #item4 { transform: rotate(180deg); }
-        #wheel #item5 { transform: rotate(240deg); }
-        #wheel #item6 { transform: rotate(300deg); }
-
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #2ecc71;
-        }
-
-        .description {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 10px;
-            background-color: #e74c3c;
-            color: white;
-            border-radius: 5px;
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constitution Word Search</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wheel-container">
-        <div class="wheel" id="wheel">
-            <!-- 6 wheel items -->
-            <div class="wheel-item" id="item1"></div>
-            <div class="wheel-item" id="item2"></div>
-            <div class="wheel-item" id="item3"></div>
-            <div class="wheel-item" id="item4"></div>
-            <div class="wheel-item" id="item5"></div>
-            <div class="wheel-item" id="item6"></div>
-        </div>
-        <button onclick="spinWheel()">Spin the Wheel</button>
-        <div id="description" class="description"></div>
+  <div class="container">
+    <h1>Constitution Word Search</h1>
+    <div id="word-search-container"></div>
+    <div class="word-list">
+      <h3>Words to Find:</h3>
+      <ul id="word-list"></ul>
     </div>
+    <button id="reset-btn">Start New Game</button>
+  </div>
 
-    <script>
-        // List of facts to display on the wheel
-        const factList = [
-            "Handwritten Masterpiece", 
-            "Borrowed Framework", 
-            "Longest Written Constitution", 
-            "Unity in Diversity", 
-            "Living Document", 
-            "Democratic Ideal", 
-            "Balance of Power", 
-            "Social Contract", 
-            "Source of Inspiration", 
-            "Continuous Journey"
-        ];
-
-        // Randomly select 6 unique facts to display on the wheel
-        function getRandomFacts() {
-            const selectedFacts = [];
-            while (selectedFacts.length < 6) {
-                const randomFact = factList[Math.floor(Math.random() * factList.length)];
-                if (!selectedFacts.includes(randomFact)) {
-                    selectedFacts.push(randomFact);
-                }
-            }
-            return selectedFacts;
-        }
-
-        // Assign random facts to wheel sections on page load
-        const randomFacts = getRandomFacts();
-        randomFacts.forEach((fact, index) => {
-            document.getElementById(`item${index + 1}`).innerText = fact;
-        });
-
-        function spinWheel() {
-            // Calculate random rotation degree for a more dynamic spin (between 5 and 10 full rotations)
-            const randomDeg = Math.floor(Math.random() * 2160) + 1800;
-            const wheel = document.getElementById('wheel');
-            
-            // Spin the wheel with smooth transition
-            wheel.style.transition = 'transform 4s ease-out';
-            wheel.style.transform = `rotate(${randomDeg}deg)`;
-
-            // Determine the selected fact after spinning
-            setTimeout(() => {
-                const finalDeg = randomDeg % 360;  // Get rotation within a single 360-degree loop
-                const itemIndex = Math.floor(finalDeg / 60); // 6 sections, each 60 degrees
-                const selectedFact = randomFacts[itemIndex];
-                document.getElementById('description').innerText = selectedFact;
-                document.getElementById('description').style.display = 'block';
-            }, 4000);  // Match the transition duration
-        }
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
