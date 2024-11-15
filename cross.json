@@ -1,0 +1,12 @@
+{
+  "across": [
+    {"clue": "Father of the Constitution", "answer": "MADISON"},
+    {"clue": "Supreme law of the land", "answer": "CONSTITUTION"},
+    // ... more across clues
+  ],
+  "down": [
+    {"clue": "Right to bear arms", "answer": "SECONDAMENDMENT"},
+    {"clue": "Freedom of speech, press, religion, assembly, and petition", "answer": "FIRSTAMENDMENT"},
+    // ... more down clues
+  ]
+}
